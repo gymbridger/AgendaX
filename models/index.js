@@ -10,4 +10,8 @@ Event.belongsTo(Date, {
   foreignKey: "event_id",
 });
 
+User.hasMany(Date, {
+  foreignKey: "user_id",
+});
+
 module.exports = { User, Event, Date };
