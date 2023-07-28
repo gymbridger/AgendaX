@@ -2,10 +2,11 @@ const newFormHandler = async (event) => {
     event.preventDefault();
   
     const name = document.querySelector('#event-name').value.trim();
-    const needed_funding = document.querySelector('#event-time').value.trim();
-    const description = document.querySelector('#project-desc').value.trim();
+    const startTime = document.querySelector('#start-time').value.trim();
+    const endTime = document.querySelector('#end-time').value.trim();
+    const description = document.querySelector('#event-desc').value.trim();
   
-    if (name && needed_funding && description) {
+    if (name && description && startTime && endTime) {
       const response = await fetch(`/api/events`, {
         method: 'POST',
         body: JSON.stringify({ name, description, starting_date, ending_date }),
