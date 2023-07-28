@@ -27,6 +27,8 @@ Event.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    // this is linking each event to a particular date
+    // references the date models id
     date_id: {
       type: DataTypes.INTEGER,
       references: {
