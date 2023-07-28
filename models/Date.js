@@ -24,7 +24,7 @@ Date.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Date",
+    modelName: "date",
   }
 );
 
