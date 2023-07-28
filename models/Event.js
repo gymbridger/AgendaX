@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Date extends Model {}
+class Event extends Model {}
 
-Date.init(
+Event.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,17 +15,25 @@ Date.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    day: {
-      type: DataTypes.DateOnly,
-      defaultValue: DataTypes.NOW,
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    starting_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    ending_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Date",
+    modelName: "Event",
   }
 );
 
-module.exports = Date;
+module.exports = Event;

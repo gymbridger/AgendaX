@@ -10,11 +10,25 @@
 </head>
 
 <body>
-    
-    <h1>The body goes below the head</h1>
+    <header>
+      <h1>The body goes below the head</h1>
+        <nav>
+          <a href="/home">home</a> |
+          {{#if logged_in}}
+          <a href="/profile">profile</a> |
+          <button class="no-button" id="logout">logout</button>
+          {{else}}
+          <a href="/login">login</a>
+          {{/if}}
+        </nav>
+    </header>
     <main>
         {{{ body }}}
     </main>
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 
 </body>
 
