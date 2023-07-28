@@ -27,7 +27,7 @@ Event.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    event_id: {
+    date_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "date",
