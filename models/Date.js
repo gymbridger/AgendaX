@@ -15,13 +15,9 @@ Date.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    ending_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+    day: {
+      type: DataTypes.DateOnly,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
