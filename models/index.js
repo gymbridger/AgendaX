@@ -1,4 +1,7 @@
-const User = require('./User');
-const Event = require('./Event');
+const Date = require("./Date");
+const Event = require("./Event");
+const User = require("./User");
 
-module.exports = { User, Event };
+Date.hasMany(Event);
+
+module.exports = { User, Event, Date };
