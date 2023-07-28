@@ -6,10 +6,14 @@ router.post('/', async (req, res) =>{
     try {
         const dbUserData = await User.create({
             username: req.body.username,
-            first_name: req.body,
-            last_name: req.body.lastname,
             email: req.body.email,
             password: req.body.pssword,
+        });
+
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            req.session.userId = dbUserData.get({plain:true}).id;
+          res.status(200).end();
         });
     }
 })
