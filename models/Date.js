@@ -16,8 +16,15 @@ Date.init(
       allowNull: false,
     },
     day: {
-      type: DataTypes.DateOnly,
+      type: DataTypes.DATEONLY,
       defaultValue: DataTypes.NOW,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {
