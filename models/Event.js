@@ -27,12 +27,19 @@ Event.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    event_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "date",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Event",
+    modelName: "event",
   }
 );
 
