@@ -14,7 +14,7 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true,
 });
-    await Event.bulkCreate(DateData, {
+    await Date.bulkCreate(dateData, {
     individualHooks: true,
     returning: true,
 
