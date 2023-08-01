@@ -22,6 +22,14 @@ Date.belongsTo(User, {
   foreignKey: "user_id",
 });
 
+Event.hasMany(Date, {
+  foreignKey: "date_id",
+});
+
+Event.hasMany(User, {
+  foreignKey: "date_id",
+});
+
 module.exports = { User, Event, Date };
 
 // When we use "hasMany", we set a foreign key in the "many" model to link back to the "one" model.
