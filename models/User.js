@@ -35,13 +35,6 @@ User.init(
         len: [6],
       },
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "date",
-        key: "id",
-      },
-    },
   },
   {
     hooks: {
@@ -56,7 +49,6 @@ User.init(
     freezeTableName: true,
     underscored: true,
     modelName: "user",
-
   }
 );
 
