@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('sequelize');
-const { User, Event, Date} = require('../../models');
+const { User } = require('../../models');
 
 router.post('/', async (req, res) =>{
     try {
@@ -15,6 +15,10 @@ router.post('/', async (req, res) =>{
             req.session.userId = dbUserData.get({plain:true}).id;
           res.status(200).end();
         });
+    } catch (err) {
+        console.log('Error')
+        res.status(400).json(err);
     }
-})
+});
+
 module.exports = router;
