@@ -17,7 +17,7 @@ Event.init(
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     starting_date: {
       type: DataTypes.DATE,
