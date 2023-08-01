@@ -1,0 +1,17 @@
+[
+    {
+      "username": "predator",
+      "email": "predator@hotmail.com",
+      "password": "password"
+    },
+    {
+      "username": "alien",
+      "email": "xenomorph@gmail.com",
+      "password": "password"
+    },
+    {
+      "username": "thing",
+      "email": "thing@aol.com",
+      "password": "password"
+    }
+  ]

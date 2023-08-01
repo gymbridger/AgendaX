@@ -15,20 +15,23 @@ Date.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+    day: {
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
     },
-    ending_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Date",
+    modelName: "date",
   }
 );
 
