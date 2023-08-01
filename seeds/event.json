@@ -1,0 +1,20 @@
+[
+    {
+      "name": "Monster Trucks",
+      "description": "See stuff go smoosh",
+      "starting_date": "2023-12-01",
+      "ending_date": "2023-12-01"
+    },
+    {
+      "name": "Vegas Vacation",
+      "description": "Lose money faster than bitcoin",
+      "starting_date": "2023-10-17",
+      "ending_date": "2023-10-21"
+    },
+    {
+      "name": "Blackjack",
+      "description": "Day 2 in Vegas",
+      "starting_date": "2023-10-18",
+      "ending_date": "2023-10-18"
+    }
+  ]
