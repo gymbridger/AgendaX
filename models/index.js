@@ -4,6 +4,7 @@ const User = require("./User");
 // 1 user has many events
 User.hasMany(Event, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
 
 // an event belongs to 1 user
