@@ -8,14 +8,14 @@ router.get('/', (req, res) => {
 
 router.get('/home', async (req, res) => {
   try {
-    res.render('homepage', { 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-  
+
 router.get('/login', async (req, res) => {
   try {
     if (req.session.logged_in) {
@@ -48,7 +48,5 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
 
 module.exports = router;

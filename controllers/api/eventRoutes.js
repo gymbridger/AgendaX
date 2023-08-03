@@ -1,6 +1,6 @@
-const router = require("express").Router();
-const { Event } = require("../../models");
-const withAuth = require("../../utils/auth");
+const router = require('express').Router();
+const { Event, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get("/", withAuth, async (req, res) => {
   try {
@@ -47,5 +47,29 @@ router.delete("/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/:id', async (req, res) => {
+  try {
+    const eventData = await Event.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const event = eventData.get({ plain: true });
+
+    res.render('event', {
+      ...event,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 
 module.exports = router;
