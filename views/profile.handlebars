@@ -8,34 +8,24 @@
   <div class="col-md-6">
     <h3>REPLACE THIS FORM WITH A 'ADD EVENT' BUTTON THAT LINKS TO A POP-UP MODAL</h3>
 
-    <button id="createEventButton" class="btn btn-primary">Add Event</button>
+    {{!-- <button id="createEventButton" class="btn btn-primary">Add Event</button> --}}
 
-    {{!-- <form class="form new-event-form">
-      <div class="form-group">
-        <label for="event-name">Event name:</label>
-        <input class="form-input" type="text" id="event-name" name="event-name" />
-      </div>
+      <form id="create-event-form">
+        <label for="event-title">Event Title:</label>
+        <input type="text" id="event-title" name="event-title" required>
 
-      <div class="form-group">
-        <label for="start-time">Start:</label>
-        <input class="form-input" type="number" id="start-time" name="start-time" />
-      </div>
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date" name="start-date" required>
 
-      <div class="form-group">
-        <label for="end-time">End:</label>
-        <input class="form-input" type="number" id="end-time" name="end-time" />
-      </div>
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date" name="end-date" required>
 
-      <div class="form-group">
-        <label for="event-desc">description:</label>
-        <textarea class="form-input" id="event-desc" name="event-desc"></textarea>
-      </div>
+        <label for="event-description">Event Description:</label>
+        <textarea id="event-description" name="event-description" required></textarea>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create Event</button>
-      </div>
-    </form>
-  </div> --}}
+        <button type="submit">Add Event</button>
+      </form>
+
 </div>
 
 <div>
