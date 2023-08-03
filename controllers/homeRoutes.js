@@ -3,9 +3,7 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { User, Event } = require('../models');
 
-router.get('/', (req, res) => {
-  res.redirect('/home');
-});
+router.get('/', async (req, res) => {
 
 router.get('/home', async (req, res) => {
   try {
@@ -53,3 +51,5 @@ router.get('/profile', withAuth, async (req, res) => {
 
 
 module.exports = router;
+=========
+>>>>>>>>> Temporary merge branch 2
