@@ -27,12 +27,12 @@ Event.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    // this is linking each event to a particular date
-    // references the date models id
-    date_id: {
+    // this is linking each event to a particular user
+    // references the user models id
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "date",
+        model: "user",
         key: "id",
       },
     },
