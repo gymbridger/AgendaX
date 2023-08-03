@@ -10,18 +10,18 @@
 
     {{!-- <button id="createEventButton" class="btn btn-primary">Add Event</button> --}}
 
-      <form id="create-event-form">
+      <form class="new-event-form">
         <label for="event-title">Event Title:</label>
-        <input type="text" id="event-title" name="event-title" required>
+        <input type="text" id="event-name" name="event-title" required>
 
         <label for="start-date">Start Date:</label>
-        <input type="date" id="start-date" name="start-date" required>
+        <input type="date" id="start-time" name="start-date" required>
 
         <label for="end-date">End Date:</label>
-        <input type="date" id="end-date" name="end-date" required>
+        <input type="date" id="end-time" name="end-date" required>
 
         <label for="event-description">Event Description:</label>
-        <textarea id="event-description" name="event-description" required></textarea>
+        <textarea id="event-desc" name="event-description" required></textarea>
 
         <button type="submit">Add Event</button>
       </form>
