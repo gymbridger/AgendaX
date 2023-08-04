@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Event } = require("../../models");
 
 router.post("/login", async (req, res) => {
+  console.log(req.body);
   try {
     const userData = await User.findOne({
       where: { username: req.body.username },
