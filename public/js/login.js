@@ -1,11 +1,11 @@
 const loginFormHandler = async (event) => {
+  console.log("form submitted");
   event.preventDefault();
 
   // Collect values from the login form
   const username = document.querySelector("#loginPageUsername").value.trim();
   const password = document.querySelector("#loginPagePassword").value.trim();
-  console.log("Submitting login form");
-
+  console.log(username, password);
   if (username && password) {
     // Send a POST request to the API endpoint
     const response = await fetch("/api/users/login", {
@@ -13,8 +13,8 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
-    console.log("recieved login");
     if (response.ok) {
+      console.log("recieved login");
       // If successful, redirect the browser to the profile page
       document.location.replace("/profile");
     } else {
@@ -32,7 +32,7 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector("#password-signup").value.trim();
 
   if (name && email && password) {
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/users/register", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: { "Content-Type": "application/json" },
@@ -47,7 +47,7 @@ const signupFormHandler = async (event) => {
 };
 
 document
-  .querySelector(".signup-form")
+  .querySelector("#registerPageForm")
   .addEventListener("submit", signupFormHandler);
 
 document
