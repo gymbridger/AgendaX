@@ -23,7 +23,7 @@ const loginFormHandler = async (event) => {
   }
 };
 
-const loginForm = document.getElementById("#loginPageForm");
+const loginForm = document.getElementById("loginPageForm");
 
 loginForm.addEventListener("submit", loginFormHandler);
 
