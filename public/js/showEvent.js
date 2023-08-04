@@ -1,6 +1,6 @@
 document.addEventListener('click', async (event) => {
-    console.log('Clicked on:', event.target);
     if (event.target && event.target.matches('#delete-button')) {
+        console.log('Show event Click')
         try {
             const confirmed = window.confirm('Are you sure you want to delete this event?');
 
