@@ -92,6 +92,11 @@
       <div class="row mb-2">
         <div class="col-md-8">
           <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+
+            <p>Starts In
+              <span class="countdown" data-start-date="{{event.starting_date}}"></span>
+            </p>
+
         </div>
         <div class="col-md-4">
           <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
@@ -109,6 +114,10 @@
     {{/if}}
   </div>
 </div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/date-fns@2.27.0/dist/date-fns.min.js"
+></script>
 
 <script src="./js/addEvent.js"></script>
 <script src="./js/profile.js"></script>
