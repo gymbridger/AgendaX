@@ -62,9 +62,3 @@ document.querySelectorAll(".delete-button").forEach((button) => {
     });
   });
 });
-
-document.querySelectorAll(".countdown").forEach((element) => {
-  const startDate = new Date(element.getAttribute("data-start-date"));
-  const countdownText = formatDistanceToNow(startDate, { addSuffix: true });
-  element.textContent = countdownText;
-});
