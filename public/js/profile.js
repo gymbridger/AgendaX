@@ -1,70 +1,54 @@
-const newFormHandler = async (event) => {
-  event.preventDefault();
-
-  const name = document.querySelector("#project-name").value.trim();
-  const needed_funding = document
-    .querySelector("#project-funding")
-    .value.trim();
-  const description = document.querySelector("#project-desc").value.trim();
-
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
-      method: "POST",
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+async function confirmDeletion(eventId) {
+  try {
+    const response = await fetch(`/api/events/${eventId}`, {
+      method: 'DELETE',
     });
 
     if (response.ok) {
-      document.location.replace("/profile");
+      console.log(`${eventId} was deleted`);
+      document.location.reload();
     } else {
-      alert("Failed to create project");
+      alert('You have run out of DELETES for today. Please go the gem store to buy more DELETES!');
     }
+  } catch (err) {
+    console.log(err);
+    alert('ERROR! ERROR!');
   }
 };
 
-// Add an event listener to the delete button
-document.querySelectorAll(".delete-button").forEach((button) => {
-  button.addEventListener("click", async (event) => {
-    const eventId = event.target.getAttribute("data-id");
-    const popup = document.querySelector(".popup");
-    const confirmButton = document.querySelector(".confirm-button");
-    const cancelButton = document.querySelector(".cancel-button");
+// event listeners for each button in the popup
+const eventListContainer = document.querySelector('.event-items');
+if (eventListContainer) { // check if container exists because event listeners throw console error if user has no buttons to listen for
+  eventListContainer.addEventListener('click', async (event) => {
+    const target = event.target;
 
-    popup.style.display = "flex";
+    if (target.classList.contains('delete-button')) {
+      const eventId = target.getAttribute('data-id');
+      const popup = document.querySelector('.popup');
 
-    confirmButton.addEventListener("click", async (event) => {
-      console.log("Profile Click");
-      event.stopImmediatePropagation();
+      // display popup confirm delete window
+      popup.style.display = 'flex';
 
-      try {
-        const response = await fetch(`/api/events/${eventId}`, {
-          method: "DELETE",
-        });
+      // confirm
+      const confirmButton = document.querySelector('.confirm-button');
+      confirmButton.addEventListener('click', async (event) => {
+        event.stopImmediatePropagation();
+        await confirmDeletion(eventId);
+        popup.style.display = 'none'; // Hide popup after choice
+      });
 
-        if (response.ok) {
-          document.location.reload();
-        } else {
-          alert("Failed to delete event");
-        }
-      } catch (err) {
-        console.log(err);
-        alert("An error occurred while deleting the event");
-      } finally {
-        popup.style.display = "none";
-      }
-    });
-
-    // Add event listener to the cancel button
-    cancelButton.addEventListener("click", () => {
-      popup.style.display = "none";
-    });
+      // cancel and reload page
+      const cancelButton = document.querySelector('.cancel-button');
+      cancelButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+        document.location.reload(); // Reload the page to reset the popup so the delete bug does not propagate 
+      });
+    }
   });
-});
+}
 
-document.querySelectorAll(".countdown").forEach((element) => {
-  const startDate = new Date(element.getAttribute("data-start-date"));
-  const countdownText = formatDistanceToNow(startDate, { addSuffix: true });
-  element.textContent = countdownText;
+// Add event listener for the "Add Event" button separately
+const addEventButton = document.getElementById('add-event-button');
+addEventButton.addEventListener('click', () => {
+  // Code for handling the Add Event button click goes here
 });
