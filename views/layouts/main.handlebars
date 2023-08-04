@@ -5,31 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgendaX</title>
-  {{!-- <link rel="stylesheet" href="/css/jass.css"> --}}
+  {{!--
+  <link rel="stylesheet" href="/css/jass.css"> --}}
   <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
 <body>
-    <header>
-      <h1>The body goes below the head</h1>
-        <nav>
-          <a href="/home">home</a> |
-          {{#if logged_in}}
-          <a href="/profile">profile</a> |
-          <button class="no-button" id="logout">logout</button>
-          {{else}}
-          <a href="/login">login</a>
-          {{/if}}
-        </nav>
-    </header>
-    <main>
-        {{{ body }}}
-    </main>
+  <header>
+    <h1>The body goes below the head</h1>
+    <nav>
+      <a href="/home">home</a> |
+      {{#if logged_in}}
+      <a href="/profile">profile</a> |
+      <button class="no-button" id="logout">logout</button>
+      {{else}}
+      <a href="/login">login</a>
+      {{/if}}
+    </nav>
+  </header>
+  <main>
+    {{{ body }}}
+  </main>
 
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 </html>

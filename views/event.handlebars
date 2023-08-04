@@ -1,0 +1,21 @@
+<div class="text-center">
+  <h2>{{name}}</h2>
+  <p>{{description}}</p>
+  <p>Goes from {{starting_date}} to {{ending_date}}</p>
+  <p>
+    <button class="btn btn-primary" id="delete-button">DELETE?</button>
+  </p>
+  <div class="popup">
+    <div class="popup-content">
+      <p>Are you sure you want to delete this event?</p>
+      <button class="btn btn-danger confirm-button">DELETE</button>
+      <button class="btn btn-secondary cancel-button">Cancel</button>
+    </div>
+  </div>
+
+
+  <div>
+    <a href="/profile" class="btn btn-primary">Back to Profile</a>
+  </div>
+
+  <script src="/js/showEvent.js"></script>
