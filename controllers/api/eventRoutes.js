@@ -48,7 +48,7 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {
       include: [
@@ -59,17 +59,19 @@ router.get('/:id', async (req, res) => {
       ],
     });
 
+    if (!eventData) {
+      return res.status(404).render('error-404');
+    }
+
     const event = eventData.get({ plain: true });
 
     res.render('event', {
       ...event,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
 
 module.exports = router;
