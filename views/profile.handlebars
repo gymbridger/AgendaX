@@ -61,10 +61,12 @@
   <div class="col-md-6 event-list">
     <h3>Upcoming Events:</h3>
 
-    {{#each events as |event|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+
+      {{#each events as |event|}}
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
@@ -79,7 +81,7 @@
     </div>
     {{/each}}
   </div>
-  {{/if}}
-</div>
+<script src="https://cdn.jsdelivr.net/npm/date-fns@2.27.0/dist/date-fns.min.js"></script>
+
 
 <script src="./js/profile.js"></script>
