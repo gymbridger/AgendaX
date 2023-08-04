@@ -34,9 +34,8 @@ document.querySelectorAll(".delete-button").forEach((button) => {
 
     popup.style.display = "flex";
 
-
-    confirmButton.addEventListener('click', async (event) => { 
-      console.log("Profile Click")
+    confirmButton.addEventListener("click", async (event) => {
+      console.log("Profile Click");
       event.stopImmediatePropagation();
 
       try {
@@ -64,10 +63,8 @@ document.querySelectorAll(".delete-button").forEach((button) => {
   });
 });
 
-
 document.querySelectorAll(".countdown").forEach((element) => {
   const startDate = new Date(element.getAttribute("data-start-date"));
   const countdownText = formatDistanceToNow(startDate, { addSuffix: true });
   element.textContent = countdownText;
 });
-

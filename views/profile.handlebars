@@ -99,7 +99,11 @@
         <div class="row mb-2">
           <div class="col-md-8">
             <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
-
+            <p>Starts In
+              <span
+                class="countdown"
+                data-start-date="{{event.starting_date}}"
+              ></span></p>
           </div>
           <div class="col-md-4">
             <button
