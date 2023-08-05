@@ -1,33 +1,16 @@
-<div class="m-5 d-flex justify-content-center">
+<div class="m-5 d-flex  justify-content-center">
   <div class="border rounded">
     <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link active"
-          id="pills-login-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-login"
-          type="button"
-          role="tab"
-          aria-controls="pills-login"
-          aria-selected="true"
-        >Log In</button>
+        <button class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login"
+          type="button" role="tab" aria-controls="pills-login" aria-selected="true">Log In</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="pills-register-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-register"
-          type="button"
-          role="tab"
-          aria-controls="pills-register"
-          aria-selected="false"
-        >Register</button>
+        <button class="nav-link" id="pills-register-tab" data-bs-toggle="pill" data-bs-target="#pills-register"
+          type="button" role="tab" aria-controls="pills-register" aria-selected="false">Register</button>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab"
         tabindex="0">
         <form class="form" id="login-form">
@@ -40,18 +23,16 @@
           <div class="mb-4 mx-2">
             <label class="form-label " for="password-login">Password:</label>
             <input type="password" id="password-login" class="form-control " />
-
           </div>
           <div class="d-flex justify-content-center">
 
             <!-- Submit button -->
-
             <button type="submit" class=" btn btn-primary btn-block sign-in-button mb-4">Sign in</button>
-
 
           </div>
 
         </form>
+
 
       </div>
       <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab" tabindex="0">
@@ -72,20 +53,12 @@
             <input type="password" id="password-signup" class="form-control " />
           </div>
           <div class="mb-4 mx-2">
-            <label class="form-label" for="registerPageConfirmPassword">Confirm
-              Password:</label>
-            <input
-              type="password"
-              id="registerPageConfirmPassword"
-              class="form-control"
-            />
+            <label class="form-label " for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" class="form-control " />
           </div>
           <!-- Submit button -->
           <div class="d-flex justify-content-center">
-            <button
-              type="submit"
-              class="btn btn-primary btn-block mb-4"
-            >Register</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
           </div>
         </form>
       </div>
@@ -94,3 +67,4 @@
 </div>
 
 <script src="./js/login.js"></script>
+<script src="./js/signup.js"></script>
