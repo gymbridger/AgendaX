@@ -98,11 +98,9 @@
         <div class="row mb-2">
           <div class="col-md-8">
             <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
-            <p>Starts In
-              <span
-                class="countdown"
-                data-start-date="{{event.starting_date}}"
-              ></span></p>
+            <p>Event Details: {{event.description}}</p>
+            <p>Start Date: {{formatEventDate event.starting_date}}</p>
+            <p>End Date: {{formatEventDate event.ending_date}}</p>
           </div>
           <div class="col-md-4">
             <button
@@ -123,6 +121,7 @@
           </div>
         </div>
       {{/each}}
+
     </div>
   {{/if}}
 </div>

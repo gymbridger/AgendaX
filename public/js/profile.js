@@ -1,4 +1,4 @@
-const eventDetails = require(".../utils/helpers.js");
+const countdownElements = document.querySelectorAll(".countdown");
 
 async function confirmDeletion(eventId) {
   try {
@@ -58,8 +58,12 @@ addEventButton.addEventListener("click", () => {
   // Code for handling the Add Event button click goes here
 });
 
-document.querySelectorAll(".countdown").forEach((countdown) => {
-  const startDate = countdown.getAttribute("data-start-date");
-  const { timeUntilStart } = eventDetails({ starting_date: startDate });
-  countdown.textContent = timeUntilStart;
+countdownElements.forEach((countdownElement) => {
+  const startDate = new Date(countdownElement.dataset.startDate);
+  const intervalId = setInterval(() => {
+    const distanceToStart = formatDistanceToNow(startDate, { addSuffix: true });
+    countdownElement.textContent = distanceToStart;
+  }, 1000);
+
+  countdownElement.dataset.intervalId = intervalId;
 });
