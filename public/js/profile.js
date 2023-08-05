@@ -1,5 +1,4 @@
-const countdownElements = document.querySelectorAll(".countdown");
-
+// Function to handle event deletion
 async function confirmDeletion(eventId) {
   try {
     const response = await fetch(`/api/events/${eventId}`, {
@@ -16,48 +15,69 @@ async function confirmDeletion(eventId) {
     }
   } catch (err) {
     console.log(err);
-    alert("ERROR! ERROR!");
+    alert("An error occurred while deleting the event");
   }
 }
 
-// event listeners for each button in the popup
-const eventListContainer = document.querySelector(".event-items");
-if (eventListContainer) {
-  // check if container exists because event listeners throw console error if user has no buttons to listen for
-  eventListContainer.addEventListener("click", async (event) => {
-    const target = event.target;
+// Add event listener to the parent element containing all the delete buttons
+const eventsList = document.querySelector(".event-list");
+eventsList.addEventListener("click", async (event) => {
+  const deleteButton = event.target.closest(".delete-button");
+  if (deleteButton) {
+    event.preventDefault();
+    event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
 
-    if (target.classList.contains("delete-button")) {
-      const eventId = target.getAttribute("data-id");
-      const popup = document.querySelector(".popup");
-
+    const eventId = deleteButton.getAttribute("data-id");
+    const row = deleteButton.closest(".row");
+    const popup = row ? row.querySelector(".popup") : null;
+    if (popup) {
       // display popup confirm delete window
       popup.style.display = "flex";
+    }
 
-      // confirm
-      const confirmButton = document.querySelector(".confirm-button");
+    // confirm
+    const confirmButton = popup ? popup.querySelector(".confirm-button") : null;
+    if (confirmButton) {
       confirmButton.addEventListener("click", async (event) => {
-        event.stopImmediatePropagation();
-        await confirmDeletion(eventId);
-        popup.style.display = "none"; // Hide popup after choice
-      });
+        event.preventDefault();
+        event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
 
-      // cancel and reload page
-      const cancelButton = document.querySelector(".cancel-button");
-      cancelButton.addEventListener("click", () => {
-        popup.style.display = "none";
-        document.location.reload(); // Reload the page to reset the popup so the delete bug does not propagate
+        await confirmDeletion(eventId);
+        if (popup) {
+          popup.style.display = "none"; // Hide popup after choice
+        }
       });
     }
-  });
-}
 
-// Add event listener for the "Add Event" button separately
-const addEventButton = document.getElementById("add-event-button");
-addEventButton.addEventListener("click", () => {
-  // Code for handling the Add Event button click goes here
+    // Cancel and close popup
+    const cancelButton = popup ? popup.querySelector(".cancel-button") : null;
+    if (cancelButton) {
+      cancelButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
+
+        if (popup) {
+          popup.style.display = "none";
+        }
+      });
+    }
+  }
 });
 
+// Add event listeners to the edit buttons
+const editButtons = document.querySelectorAll(".edit-button");
+editButtons.forEach((button) => {
+  button.addEventListener("click", async (event) => {
+    event.preventDefault();
+    event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
+
+    const eventId = button.getAttribute("data-id");
+    document.location.href = `/api/events/${eventId}/edit`;
+  });
+});
+
+// Get the countdown elements and update the countdown display
+const countdownElements = document.querySelectorAll(".countdown");
 countdownElements.forEach((countdownElement) => {
   const startDate = new Date(countdownElement.dataset.startDate);
   const intervalId = setInterval(() => {
