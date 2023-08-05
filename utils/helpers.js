@@ -10,8 +10,7 @@
 //   },
 // };
 
-var formatDistanceToNow = require("date-fns/formatDistanceToNow");
-const formatDistance = require("date-fns/formatDistance");
+const { formatDistanceToNow, formatDistance } = require("date-fns");
 
 function eventDetails(event) {
   const startDate = new Date(event.starting_date);
@@ -24,4 +23,17 @@ function eventDetails(event) {
   };
 }
 
-module.exports = eventDetails;
+function formatEventDate(dateString) {
+  return formatDistanceToNow(new Date(dateString), { addSuffix: true });
+}
+
+function formatDate(dateString) {
+  var date = new Date(dateString);
+  return date.toISOString().split("T")[0];
+}
+
+module.exports = {
+  eventDetails,
+  formatEventDate,
+  formatDate,
+};
