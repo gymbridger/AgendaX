@@ -32,8 +32,21 @@ router.post("/login", async (req, res) => {
 });
 
 // create user
-router.post("/register", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
+    // validate form inputs
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      console.log(username, email, password)
+      return res.status(400).json({ message: 'Username, email, and password are required.' });
+    }
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered.' });
+    }
+    // sign up new user
     const userData = await User.create({
       username: req.body.username,
       email: req.body.email,
@@ -48,7 +61,6 @@ router.post("/register", async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
-    console.log("Post route SIGN-UP used");
     res.status(400).json(err);
   }
 });
