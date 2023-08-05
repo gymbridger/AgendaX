@@ -1,3 +1,5 @@
+const eventDetails = require(".../utils/helpers.js");
+
 async function confirmDeletion(eventId) {
   try {
     const response = await fetch(`/api/events/${eventId}`, {
@@ -54,4 +56,10 @@ if (eventListContainer) {
 const addEventButton = document.getElementById("add-event-button");
 addEventButton.addEventListener("click", () => {
   // Code for handling the Add Event button click goes here
+});
+
+document.querySelectorAll(".countdown").forEach((countdown) => {
+  const startDate = countdown.getAttribute("data-start-date");
+  const { timeUntilStart } = eventDetails({ starting_date: startDate });
+  countdown.textContent = timeUntilStart;
 });
