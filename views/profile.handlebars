@@ -6,17 +6,20 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <button type="button" class="btn btn-primary" id="add-event-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary" id="add-event-button" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
       Add Event
     </button>
 
-    <!-- <Modal -->
+    {{> edit-event}}
+
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <div id="event-boxes">
-              <form class="form new-event-form">
+              <form class="form new-event-form" id="add-event-form">
                 <div class="form-group">
                   <label for="event-name">Event name:</label>
                   <input class="form-input" type="text" id="event-name" name="event-name" />
@@ -38,11 +41,11 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">X it!</button>
+                  <button type="submit" class="btn btn-primary form-submit-button">X it!</button>
                 </div>
               </form>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" id="close-button" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -56,45 +59,38 @@
 
 <div>
   {{#if events.length}}
-    <div class="col-md-6 event-list">
-      <h3>Upcoming Events:</h3>
+  <div class="col-md-6 event-list">
+    <h3>Upcoming Events:</h3>
 
-      {{#each events as |event|}}
-        <div class="row mb-2">
-          <div class="col-md-8">
-            <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
-            <p>Starts In
-              <span
-                class="countdown"
-                data-start-date="{{event.starting_date}}"
-              ></span></p>
-          </div>
-          <div class="col-md-4">
-            <button
-              class="btn btn-sm btn-danger delete-button"
-              data-id="{{event.id}}"
-            >REMOVE</button>
-            <button
-              class="btn btn-sm btn-warning edit-button"
-              data-id="{{event.id}}"
-            >EDIT</button>
-          </div>
+    {{#each events as |event|}}
+    <div class="event-item">
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+          <p>Starts In
+            <span class="countdown" data-start-date="{{event.starting_date}}"></span>
+          </p>
         </div>
-        <div class="popup">
-          <div class="popup-content">
-            <p>Are you sure you want to delete this event?</p>
-            <button class="btn btn-danger confirm-button">DELETE</button>
-            <button class="btn btn-secondary cancel-button">Cancel</button>
-          </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
+          <button class="btn btn-sm btn-warning edit-button" data-id="{{event.id}}">EDIT</button>
         </div>
-      {{/each}}
+      </div>
+      <div class="popup">
+        <div class="popup-content">
+          <p>Are you sure you want to delete this event?</p>
+          <button class="btn btn-danger confirm-button">DELETE</button>
+          <button class="btn btn-secondary cancel-button">Cancel</button>
+        </div>
+      </div>
     </div>
+    {{/each}}
+  </div>
   {{/if}}
 </div>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/date-fns@2.27.0/dist/date-fns.min.js"
-></script>
 
+
+<script src="./js/editEvent.js"></script>
 <script src="./js/addEvent.js"></script>
 <script src="./js/profile.js"></script>

@@ -1,0 +1,39 @@
+<!-- Edit Event Modal -->
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="event-boxes">
+          <form class="form edit-event-form">
+            <div class="form-group">
+              <label for="event-name">Event name:</label>
+              <input class="form-input" type="text" id="event-name" name="event-name" />
+            </div>
+
+            <div class="form-group">
+              <label for="start-time">Start:</label>
+              <input class="form-input" type="number" id="start-time" name="start-time" />
+            </div>
+
+            <div class="form-group">
+              <label for="end-time">End:</label>
+              <input class="form-input" type="number" id="end-time" name="end-time" />
+            </div>
+
+            <div class="form-group">
+              <label for="event-desc">Description:</label>
+              <textarea class="form-input" id="event-desc" name="event-desc"></textarea>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary update-button">Update</button>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary cancel-button" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
