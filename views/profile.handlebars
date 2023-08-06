@@ -61,19 +61,20 @@
   {{#if events.length}}
   <div class="col-md-6 event-list">
     <h3>Upcoming Events:</h3>
-
     {{#each events as |event|}}
-    <div class="event-item">
-      <div class="row mb-2">
-        <div class="col-md-8">
-          <h4><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
-          <p>Starts In
-            <span class="countdown" data-start-date="{{event.starting_date}}"></span>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
-          <button class="btn btn-sm btn-warning edit-button" data-id="{{event.id}}">EDIT</button>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h4 class="card-title"><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+            <p class="card-text">Starts In
+              <span class="countdown" data-start-date="{{event.starting_date}}"></span>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
+            <button class="btn btn-sm btn-warning edit-button" data-id="{{event.id}}">EDIT</button>
+          </div>
         </div>
       </div>
       <div class="popup">
@@ -88,6 +89,7 @@
   </div>
   {{/if}}
 </div>
+
 
 
 
