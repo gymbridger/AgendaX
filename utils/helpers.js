@@ -1,13 +1,3 @@
-// put the date fns (or other package stuff here)
-
-// this is moment.js from leftover code of other project. can be deleted once date-fns is working
-module.exports = {
-  format_date: (date) => {
-    // Format date as MM/DD/YYYY
-    return date.toLocaleDateString();
-  },
-};
-
 const { formatDistanceToNow, formatDistance } = require("date-fns");
 
 function eventDetails(event) {
@@ -26,8 +16,17 @@ function formatEventDate(dateString) {
 }
 
 function formatDate(dateString) {
-  var date = new Date(dateString);
-  return date.toISOString().split("T")[0];
+  const date = new Date(dateString);
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZoneName: "short",
+  };
+  return date.toLocaleDateString(undefined, options);
 }
 
 module.exports = {
