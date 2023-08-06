@@ -2,13 +2,13 @@ document.querySelector('.new-event-form').addEventListener('submit', async (even
   event.preventDefault();
 
   try {
-    // Collect data for new event
+    // query document data for new event
     const name = document.querySelector('#event-name').value.trim();
     const startTime = document.querySelector('#start-time').value.trim();
     const endTime = document.querySelector('#end-time').value.trim();
     const description = document.querySelector('#event-desc').value.trim();
 
-    // Create the eventData object with the user-provided data
+    // make eventData object with the user-provided data
     const eventData = {
       name: name,
       starting_date: startTime,

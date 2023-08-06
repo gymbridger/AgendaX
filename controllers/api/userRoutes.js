@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ message: 'Username, email, and password are required.' });
     }
 
-    // Check if user already exists
+    // check if user already exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered.' });
