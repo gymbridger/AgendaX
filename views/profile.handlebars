@@ -4,6 +4,7 @@
   </div>
 </div>
 
+
 <div class="row mt-4">
   <div class="col-md-6">
     <button type="button" class="btn btn-primary" id="add-event-button" data-bs-toggle="modal"
@@ -25,7 +26,15 @@
                   <input class="form-input" type="text" id="event-name" name="event-name" />
                 </div>
 
-                <div class="form-group">
+                <div class="input-daterange input-group datepicker" id="datepicker">
+                  <label for="start-date" style="display: flex; align-items: center; margin-right: 10px;">Goes
+                    from:</label>
+                  <input type="text" class="input-sm form-control" id="start-date" name="start-date" />
+                  <span class="input-group-addon" style="margin: 0 5px;"> to </span>
+                  <input type="text" class="input-sm form-control" id="end-date" name="end-date" />
+                </div>
+
+                {{!-- <div class="form-group">
                   <label for="start-time">Start:</label>
                   <input class="form-input" type="number" id="start-time" name="start-time" />
                 </div>
@@ -33,7 +42,7 @@
                 <div class="form-group">
                   <label for="end-time">End:</label>
                   <input class="form-input" type="number" id="end-time" name="end-time" />
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                   <label for="event-desc">Description:</label>
@@ -55,39 +64,46 @@
   </div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+
+
+<script src="./js/dropdown.js"></script>
+
+
 <div>
   {{#if events.length}}
   <div class="col-md-6 event-list">
     <h3>Upcoming Events:</h3>
-{{#each events as |event|}}
-<div class="card mb-3">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-8">
-        <h4 class="card-title"><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
-        <p class="card-text">Event Description: {{event.description}}</p>
-        <p class="card-text">Starts on: <span class="start-date">{{formatDate event.starting_date}}</span></p>
-        <p class="card-text">Ends on: <span class="end-date">{{formatDate event.ending_date}}</span></p>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
-        <button class="btn btn-sm btn-warning edit-button" data-id="{{event.id}}">EDIT</button>
-      </div>
-    </div>
-  </div>
-    <div class="popup">
-        <div class="popup-content">
-            <p>Are you sure you want to delete this event?</p>
-            <button class="btn btn-danger confirm-button">DELETE</button>
-            <button class="btn btn-secondary cancel-button">Cancel</button>
+    {{#each events as |event|}}
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h4 class="card-title"><a href="/api/events/{{event.id}}">{{event.name}}</a></h4>
+            <p class="card-text">Event Description: {{event.description}}</p>
+            <p class="card-text">Starts on: <span class="start-date">{{formatDate event.starting_date}}</span></p>
+            <p class="card-text">Ends on: <span class="end-date">{{formatDate event.ending_date}}</span></p>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-sm btn-danger delete-button" data-id="{{event.id}}">REMOVE</button>
+            <button class="btn btn-sm btn-warning edit-button" data-id="{{event.id}}">EDIT</button>
+          </div>
         </div>
+      </div>
+      <div class="popup">
+        <div class="popup-content">
+          <p>Are you sure you want to delete this event?</p>
+          <button class="btn btn-danger confirm-button">DELETE</button>
+          <button class="btn btn-secondary cancel-button">Cancel</button>
+        </div>
+      </div>
     </div>
-</div>
-{{/each}}
+    {{/each}}
   </div>
   {{/if}}
 </div>
-
 
 
 
