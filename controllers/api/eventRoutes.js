@@ -16,19 +16,28 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
+// add event route
 router.post("/", withAuth, async (req, res) => {
   try {
+    // destructure data from req.body (modal was including extraneous html with data)
+    const { name, starting_date, ending_date, description } = req.body;
+
+    // create new event
     const newEvent = await Event.create({
-      ...req.body,
+      name,
+      starting_date,
+      ending_date,
+      description,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newEvent);
+    res.status(201).json(newEvent);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json({ error: "Failed to add the event" });
   }
 });
 
+// delete event by id
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const eventData = await Event.destroy({
@@ -49,6 +58,7 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
+// GET route for displaying the event on separate page
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {
@@ -75,7 +85,8 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get("/:id/edit", withAuth, async (req, res) => {
+// GET route for displaying edit modal
+router.get("/:id/json", withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {
       include: [
@@ -87,44 +98,46 @@ router.get("/:id/edit", withAuth, async (req, res) => {
     });
 
     if (!eventData) {
-      return res.status(404).render("error-404");
+      if (req.accepts("json")) {
+        return res.status(404).json({ error: "Event not found" });
+      } else {
+        return res.status(404).render("error-404");
+      }
     }
 
     const event = eventData.get({ plain: true });
 
-    res.render("editEvent", {
-      ...event,
-      logged_in: req.session.logged_in,
-    });
+    if (req.accepts("json")) {
+      // success returns the event details as JSON
+      return res.json(event);
+    } else {
+      // render the 'event' template if no JSON
+      res.render("event", {
+        ...event,
+        logged_in: req.session.logged_in,
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post("/:id/edit", withAuth, async (req, res) => {
+// edit event by id
+router.put("/:id", withAuth, async (req, res) => {
   try {
-    const eventData = await Event.update(
-      {
-        name: req.body["event-name"],
-        starting_date: req.body["start-time"],
-        ending_date: req.body["end-time"],
-        // Add more properties as needed
+    const eventData = await Event.update(req.body, {
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
       },
-      {
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      }
-    );
+    });
 
     if (!eventData[0]) {
       res.status(404).json({ message: "No event found with this id!" });
       return;
     }
 
-    // Redirect to the profile page after a successful update
-    res.redirect("/profile");
+    res.status(200).json(eventData);
   } catch (err) {
     res.status(500).json(err);
   }

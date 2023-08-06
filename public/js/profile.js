@@ -20,22 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Add event listener to the parent element containing all the delete buttons
-  const eventsList = document.querySelector(".event-list");
-  if (eventsList) {
-    eventsList.addEventListener("click", async (event) => {
-      const deleteButton = event.target.closest(".delete-button");
-      if (deleteButton) {
-        event.preventDefault();
-        event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
+// event listeners for each button in the popup
+const eventListContainer = document.querySelector('.event-list');
+if (eventListContainer) {
+  eventListContainer.addEventListener('click', async (event) => {
+    const target = event.target;
 
-        const eventId = deleteButton.getAttribute("data-id");
-        const row = deleteButton.closest(".row");
-        const popup = row ? row.querySelector(".popup") : null;
-        if (popup) {
-          // display popup confirm delete window
-          popup.style.display = "flex";
-        }
+    // Find the parent event item element containing the delete button
+    const eventItem = target.closest('.event-item');
+
+    if (target.classList.contains('delete-button')) {
+      const eventId = target.getAttribute('data-id');
+      const popup = eventItem.querySelector('.popup'); // Select the popup within the event item
 
         // confirm
         const confirmButton = popup
@@ -46,54 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
 
-            await confirmDeletion(eventId);
-            if (popup) {
-              popup.style.display = "none"; // Hide popup after choice
-            }
-          });
-        }
-
-        // Cancel and close popup
-        const cancelButton = popup
-          ? popup.querySelector(".cancel-button")
-          : null;
-        if (cancelButton) {
-          cancelButton.addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
-
-            if (popup) {
-              popup.style.display = "none";
-            }
-          });
-        }
-      }
-    });
-  }
-
-  // Add event listeners to the edit buttons
-  const editButtons = document.querySelectorAll(".edit-button");
-  editButtons.forEach((button) => {
-    button.addEventListener("click", async (event) => {
-      event.preventDefault();
-      event.stopPropagation(); // Stop event propagation to prevent multiple event triggers
-
-      const eventId = button.getAttribute("data-id");
-      document.location.href = `/api/events/${eventId}/edit`;
-    });
-  });
-
-  // Get the countdown elements and update the countdown display
-  const countdownElements = document.querySelectorAll(".countdown");
-  countdownElements.forEach((countdownElement) => {
-    const startDate = new Date(countdownElement.dataset.startDate);
-    const intervalId = setInterval(() => {
-      const distanceToStart = formatDistanceToNow(startDate, {
-        addSuffix: true,
+      // confirm
+      const confirmButton = popup.querySelector('.confirm-button'); // Select the confirm button within the popup
+      confirmButton.addEventListener('click', async (event) => {
+        event.stopImmediatePropagation();
+        await confirmDeletion(eventId);
+        popup.style.display = 'none'; // Hide popup after choice
       });
-      countdownElement.textContent = distanceToStart;
-    }, 1000);
 
-    countdownElement.dataset.intervalId = intervalId;
-  });
-});
+      // cancel and reload page
+      const cancelButton = popup.querySelector('.cancel-button'); // Select the cancel button within the popup
+      cancelButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+        document.location.reload(); // Reload the page to reset the popup
+      });
+    }
+  })
+}
+})

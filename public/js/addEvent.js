@@ -1,14 +1,20 @@
-document.querySelector('.new-event-form').addEventListener('submit', async (event) => {
+document.getElementById('add-event-form').addEventListener('submit', async (event) => {
   event.preventDefault();
 
   try {
-    // Collect data for new event
-    const name = document.querySelector('#event-name').value.trim();
-    const startTime = document.querySelector('#start-time').value.trim();
-    const endTime = document.querySelector('#end-time').value.trim();
-    const description = document.querySelector('#event-desc').value.trim();
+    // make a FormData object to extract only the data values and no added html which causes POST to fail
+    const formData = new FormData(document.getElementById('add-event-form'));
+    const name = formData.get('event-name').trim();
+    const startTime = formData.get('start-time').trim();
+    const endTime = formData.get('end-time').trim();
+    const description = formData.get('event-desc').trim();
 
-    // Create the eventData object with the user-provided data
+    if (!name || !startTime || !endTime) {
+      alert('One or more required fields is empty');
+      return; // validate inputs not null
+    }
+
+    // create event data object with event values
     const eventData = {
       name: name,
       starting_date: startTime,
@@ -19,9 +25,9 @@ document.querySelector('.new-event-form').addEventListener('submit', async (even
     const response = await fetch('/api/events', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', // set the content type to JSON
       },
-      body: JSON.stringify(eventData),
+      body: JSON.stringify(eventData), // convert the data to a JSON string
     });
 
     if (response.ok) {
