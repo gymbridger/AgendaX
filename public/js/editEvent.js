@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (response.ok) {
           console.log("Event updated successfully!");
-          // Redirect to the profile page after a successful update
+
           window.location.replace("/profile");
         } else {
           console.error("Error updating event");

@@ -1,4 +1,3 @@
-// Wrap the entire code inside a DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", () => {
   // Function to handle event deletion
   async function confirmDeletion(eventId) {
