@@ -49,10 +49,3 @@ if (eventListContainer) {
     }
   });
 }
-
-
-// listener for the "Add Event" button
-const addEventButton = document.getElementById('add-event-button');
-addEventButton.addEventListener('click', () => {
-  console.log("Adding event...")
-});

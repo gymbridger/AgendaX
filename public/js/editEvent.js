@@ -37,10 +37,15 @@ editButtons.forEach((editButton) => {
             updateButton.addEventListener('click', async (event) => {
                 event.preventDefault();
 
-                // take any user inputs as changes to event info
-                const updatedName = eventNameInput.value;
-                const updatedStartTime = startTimeInput.value;
-                const updatedEndTime = endTimeInput.value;
+                const updatedName = eventNameInput.value.trim();
+                const updatedStartTime = startTimeInput.value.trim();
+                const updatedEndTime = endTimeInput.value.trim();
+
+                if (!updatedName || !updatedStartTime || !updatedEndTime) {
+                    alert('One or more required fields is empty');
+                    return; // validate inputs not null
+                }
+
                 const updatedDescription = eventDescInput.value;
 
                 // make new object with changes

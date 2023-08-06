@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Event, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 router.get("/", withAuth, async (req, res) => {
   try {
     const getEvents = await Event.findAll({
@@ -15,19 +16,29 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.post("/", withAuth, async (req, res) => {
+
+// add event route
+router.post('/', withAuth, async (req, res) => {
   try {
+    // destructure data from req.body (modal was including extraneous html with data)
+    const { name, starting_date, ending_date, description } = req.body;
+
+    // create new event
     const newEvent = await Event.create({
-      ...req.body,
+      name,
+      starting_date,
+      ending_date,
+      description,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newEvent);
+    res.status(201).json(newEvent);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json({ error: 'Failed to add the event' });
   }
 });
 
+// delete event by id
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const eventData = await Event.destroy({
@@ -47,6 +58,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 // GET route for displaying the event on separate page
 router.get('/:id', withAuth, async (req, res) => {
@@ -75,7 +87,8 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
-// GET route for displaying in edit modal
+
+// GET route for displaying edit modal
 router.get('/:id/json', withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {
@@ -133,5 +146,6 @@ router.put("/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;
