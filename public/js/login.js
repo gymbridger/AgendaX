@@ -1,56 +1,32 @@
-const loginFormHandler = async (event) => {
+async function loginFormHandler(event) {
   event.preventDefault();
 
-  // Collect values from the login form
+  // collect values from the login form
   const username = document.querySelector('#username-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
+  console.log("Submitting login form");
 
   if (username && password) {
-    // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
+    //  POST request to the API endpoint
+    const response = await fetch("/api/users/login", {
+      method: "POST",
       body: JSON.stringify({ username, password }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
-
+    console.log("recieved login");
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace('/profile');
+      // success, redirect to profile
+      document.location.replace("/profile");
     } else {
-      alert(response.statusText);
+      alert('Invalid credentials. Please try again.');
     }
   }
-};
+}
 
-// sign up still does not route
-const signupFormHandler = async (event) => {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("login-form");
 
-  const name = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-
-  if (name && email && password) {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
-
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
-
-
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  // event listener runs loginFormHandler function
+  loginForm.addEventListener("submit", loginFormHandler);
+});
 

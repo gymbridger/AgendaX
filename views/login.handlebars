@@ -13,21 +13,21 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab"
         tabindex="0">
-        <form class="form" id="loginPageForm">
-          <!-- Email input -->
+        <form class="form" id="login-form">
+          <!-- Username input -->
           <div class=" mb-4 mx-2">
-            <label class="form-label " for="loginPageUsername">Username:</label>
-            <input type="Username" id="loginPageUsername" class="form-control" placeholder="Enter Username" />
+            <label class="form-label " for="username-login">Username:</label>
+            <input type="Username" id="username-login" class="form-control" placeholder="Enter Username" />
           </div>
           <!-- Password input -->
           <div class="mb-4 mx-2">
-            <label class="form-label " for="loginPagePassword">Password:</label>
-            <input type="password" id="loginPagePassword" class="form-control " />
+            <label class="form-label " for="password-login">Password:</label>
+            <input type="password" id="password-login" class="form-control " />
           </div>
           <div class="d-flex justify-content-center">
 
             <!-- Submit button -->
-            <button type="submit" class=" btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="submit" class=" btn btn-primary btn-block sign-in-button mb-4">Sign in</button>
 
           </div>
 
@@ -36,25 +36,25 @@
 
       </div>
       <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab" tabindex="0">
-        <form class="form" id="registerPageForm">
+        <form class="form" id="signup-form">
           <!-- Name input -->
           <div class=" mb-4 mx-2">
-            <label class="form-label " for="registerPageUsername">Username:</label>
-            <input type="input" id="registerPageUsername" class="form-control" placeholder="Your first name" />
+            <label class="form-label " for="username-signup">Username:</label>
+            <input type="input" id="username-signup" class="form-control" placeholder="Your username" />
           </div>
           <!-- Email input -->
           <div class=" mb-4 mx-2">
-            <label class="form-label " for="registerPageEmail">Email:</label>
-            <input type="email" id="registerPageEmail" class="form-control" placeholder="user@example.com" />
+            <label class="form-label " for="email-signup">Email:</label>
+            <input type="email" id="email-signup" class="form-control" placeholder="user@example.com" />
           </div>
           <!-- Password input -->
           <div class="mb-4 mx-2">
-            <label class="form-label " for="registerPagePassword">Password (min 8 characters):</label>
-            <input type="password" id="registerPagePassword" class="form-control " />
+            <label class="form-label " for="password-signup">Password (min 8 characters):</label>
+            <input type="password" id="password-signup" class="form-control " />
           </div>
           <div class="mb-4 mx-2">
-            <label class="form-label " for="registerPageConfirmPassword">Confirm Password:</label>
-            <input type="password" id="registerPageConfirmPassword" class="form-control " />
+            <label class="form-label " for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" class="form-control " />
           </div>
           <!-- Submit button -->
           <div class="d-flex justify-content-center">
@@ -65,3 +65,6 @@
     </div>
   </div>
 </div>
+
+<script src="./js/login.js"></script>
+<script src="./js/signup.js"></script>
