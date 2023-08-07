@@ -4,7 +4,6 @@
   </div>
 </div>
 
-
 <div class="row mt-4">
   <div class="col-md-6">
     <button type="button" class="btn btn-primary" id="add-event-button" data-bs-toggle="modal"
@@ -33,6 +32,8 @@
                   <span class="input-group-addon" style="margin: 0 5px;"> to </span>
                   <input type="text" class="input-sm form-control" id="end-date" name="end-date" />
                 </div>
+
+                {{!-- keep this code in case time format is added to app --}}
 
                 {{!-- <div class="form-group">
                   <label for="start-time">Start:</label>
@@ -64,13 +65,11 @@
   </div>
 </div>
 
-
+{{!-- pull in jquery to help with the datepicker calendar code --}}
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 
-
 <script src="./js/dropdown.js"></script>
-
 
 <div>
   {{#if events.length}}
@@ -104,8 +103,6 @@
   </div>
   {{/if}}
 </div>
-
-
 
 <script src="./js/editEvent.js"></script>
 <script src="./js/addEvent.js"></script>
