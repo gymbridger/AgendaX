@@ -18,6 +18,7 @@ const sess = {
   secret: "Super secret secret",
   cookie: {
     maxAge: 300000,
+    // to test logout behavior, set maxAge to 3000 milliseconds. normal setting is 300000
     httpOnly: true,
     secure: false,
     sameSite: "strict",

@@ -1,20 +1,58 @@
 [
-    {
-      "name": "Monster Trucks",
-      "description": "See stuff go smoosh",
-      "starting_date": "2023-12-01",
-      "ending_date": "2023-12-01"
-    },
-    {
-      "name": "Vegas Vacation",
-      "description": "Lose money faster than bitcoin",
-      "starting_date": "2023-10-17",
-      "ending_date": "2023-10-21"
-    },
-    {
-      "name": "Blackjack",
-      "description": "Day 2 in Vegas",
-      "starting_date": "2023-10-18",
-      "ending_date": "2023-10-18"
-    }
-  ]
+  {
+    "name": "Monster Trucks",
+    "description": "See stuff go smoosh",
+    "starting_date": "2023-12-01",
+    "ending_date": "2023-12-01",
+    "user_id": 1
+  },
+  {
+    "name": "Vegas Vacation",
+    "description": "Lose money faster than bitcoin",
+    "starting_date": "2023-10-17",
+    "ending_date": "2023-10-21",
+    "user_id": 1
+  },
+  {
+    "name": "Blackjack",
+    "description": "Day 2 in Vegas",
+    "starting_date": "2023-10-18",
+    "ending_date": "2023-10-18",
+    "user_id": 1
+  },
+  {
+    "name": "Dance Fest",
+    "description": "party til u barfy",
+    "starting_date": "2023-09-19",
+    "ending_date": "2023-09-21",
+    "user_id": 1
+  },
+  {
+    "name": "Monster Trucks",
+    "description": "See stuff go smoosh",
+    "starting_date": "2023-12-01",
+    "ending_date": "2023-12-01",
+    "user_id": 1
+  },
+  {
+    "name": "Vegas Vacation",
+    "description": "Lose money faster than bitcoin",
+    "starting_date": "2023-10-17",
+    "ending_date": "2023-10-21",
+    "user_id": 1
+  },
+  {
+    "name": "Blackjack",
+    "description": "Day 2 in Vegas",
+    "starting_date": "2023-10-18",
+    "ending_date": "2023-10-18",
+    "user_id": 1
+  },
+  {
+    "name": "Dance Fest",
+    "description": "party til u barfy",
+    "starting_date": "2023-09-19",
+    "ending_date": "2023-09-21",
+    "user_id": 1
+  }
+]

@@ -1,17 +1,20 @@
 [
-    {
-      "username": "predator",
-      "email": "predator@hotmail.com",
-      "password": "password"
-    },
-    {
-      "username": "alien",
-      "email": "xenomorph@gmail.com",
-      "password": "password"
-    },
-    {
-      "username": "thing",
-      "email": "thing@aol.com",
-      "password": "password"
-    }
-  ]
+  {
+    "id": 1,
+    "username": "predator",
+    "email": "predator@hotmail.com",
+    "password": "password"
+  },
+  {
+    "id": 2,
+    "username": "alien",
+    "email": "xenomorph@gmail.com",
+    "password": "password"
+  },
+  {
+    "id": 3,
+    "username": "thing",
+    "email": "thing@aol.com",
+    "password": "password"
+  }
+]
