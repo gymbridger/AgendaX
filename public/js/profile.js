@@ -24,7 +24,7 @@ if (eventListContainer) {
   eventListContainer.addEventListener("click", async (event) => {
     const target = event.target;
 
-    // Find the parent event item element containing the delete button
+    // find the parent event item element containing the delete button
     const eventItem = target.closest(".card");
 
     if (target.classList.contains("delete-button")) {

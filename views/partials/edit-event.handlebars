@@ -10,7 +10,23 @@
               <input class="form-input" type="text" id="event-name" name="event-name" />
             </div>
 
-            <div class="form-group">
+            <div>Current schedule:</div>
+            <div>Start: <span id="existing-start-date"></span></div>
+            <div>End: <span id="existing-end-date"></span></div>
+
+            <div>Re-X it?</div>
+
+            <div class="input-daterange input-group datepicker" id="datepicker">
+              <label for="new-start-date" style="display: flex; align-items: center; margin-right: 10px;">Goes
+                from:</label>
+              <input type="text" class="input-sm form-control" id="new-start-date" name="new-start-date" />
+              <span class="input-group-addon" style="margin: 0 5px;"> to </span>
+              <input type="text" class="input-sm form-control" id="new-end-date" name="new-end-date" />
+            </div>
+
+            {{!-- keep this code in case time format is added to app --}}
+
+            {{!-- <div class="form-group">
               <label for="start-time">Start:</label>
               <input class="form-input" type="number" id="start-time" name="start-time" />
             </div>
@@ -18,7 +34,7 @@
             <div class="form-group">
               <label for="end-time">End:</label>
               <input class="form-input" type="number" id="end-time" name="end-time" />
-            </div>
+            </div> --}}
 
             <div class="form-group">
               <label for="event-desc">Description:</label>

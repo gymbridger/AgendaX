@@ -29,4 +29,3 @@ document.addEventListener("DOMContentLoaded", function () {
   // event listener runs loginFormHandler function
   loginForm.addEventListener("submit", loginFormHandler);
 });
-
