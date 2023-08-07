@@ -1,6 +1,15 @@
 // listen for edit buttons
 const editButtons = document.querySelectorAll('.edit-button');
 
+// formatting function to handle displaying dates so a human can read it
+function formatDateToMMDDYYYY(dateString) {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+}
+
 // console log edit button clicks, troubleshooting event errors
 editButtons.forEach((editButton) => {
     editButton.addEventListener('click', async () => {
@@ -22,26 +31,32 @@ editButtons.forEach((editButton) => {
 
             const eventData = await response.json();
             const eventNameInput = document.getElementById('event-name');
-            const startTimeInput = document.getElementById('start-time');
-            const endTimeInput = document.getElementById('end-time');
+            const startDateInput = document.getElementById('new-start-date'); // new date from datepicker
+            const endDateInput = document.getElementById('new-end-date'); // new date from datepicker
+            const existingStartDate = document.getElementById('existing-start-date'); // existing date to display
+            const existingEndDate = document.getElementById('existing-end-date'); // existing date to display
             const eventDescInput = document.getElementById('event-desc');
+
+            // checking the event data for debugging
+            console.log(eventData);
 
             // show existing event info in modal fields
             eventNameInput.value = eventData.name;
-            startTimeInput.value = eventData.start_time;
-            endTimeInput.value = eventData.end_time;
+            // format existing start and end dates to display them
+            existingStartDate.textContent = formatDateToMMDDYYYY(eventData.starting_date);
+            existingEndDate.textContent = formatDateToMMDDYYYY(eventData.ending_date);
             eventDescInput.value = eventData.description;
 
             // listener for update-button inside modal
             const updateButton = document.querySelector('.update-button');
             updateButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-
+                // get edited event info as new values
                 const updatedName = eventNameInput.value.trim();
-                const updatedStartTime = startTimeInput.value.trim();
-                const updatedEndTime = endTimeInput.value.trim();
+                const updatedStartDate = startDateInput.value.trim();
+                const updatedEndDate = endDateInput.value.trim();
 
-                if (!updatedName || !updatedStartTime || !updatedEndTime) {
+                if (!updatedName || !updatedStartDate || !updatedEndDate) {
                     alert('One or more required fields is empty');
                     return; // validate inputs not null
                 }
@@ -51,8 +66,8 @@ editButtons.forEach((editButton) => {
                 // make new object with changes
                 const updatedEventData = {
                     name: updatedName,
-                    start_time: updatedStartTime,
-                    end_time: updatedEndTime,
+                    starting_date: updatedStartDate,
+                    ending_date: updatedEndDate,
                     description: updatedDescription,
                 };
 
