@@ -5,11 +5,11 @@ document.getElementById('add-event-form').addEventListener('submit', async (even
     // make a FormData object to extract only the data values and no added html which causes POST to fail
     const formData = new FormData(document.getElementById('add-event-form'));
     const name = formData.get('event-name').trim();
-    const startTime = formData.get('start-time').trim();
-    const endTime = formData.get('end-time').trim();
+    const startDate = formData.get('start-date').trim();
+    const endDate = formData.get('end-date').trim();
     const description = formData.get('event-desc').trim();
 
-    if (!name || !startTime || !endTime) {
+    if (!name || !startDate || !endDate) {
       alert('One or more required fields is empty');
       return; // validate inputs not null
     }
@@ -17,8 +17,8 @@ document.getElementById('add-event-form').addEventListener('submit', async (even
     // create event data object with event values
     const eventData = {
       name: name,
-      starting_date: startTime,
-      ending_date: endTime,
+      starting_date: startDate,
+      ending_date: endDate,
       description: description,
     };
 

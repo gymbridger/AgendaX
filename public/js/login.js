@@ -13,7 +13,7 @@ async function loginFormHandler(event) {
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
-    console.log("recieved login");
+    console.log("received login");
     if (response.ok) {
       // success, redirect to profile
       document.location.replace("/profile");
